@@ -1,7 +1,7 @@
 # AegisForensics — AI and Engineering Rules
 
-**Status:** Draft v0.2
-**Applies to:** Every AI coding assistant and human contributor
+**Status:** Draft v0.3  
+**Applies to:** Every AI coding assistant and human contributor  
 **Decision policy:** Resolve open choices with the project owner before implementing affected components.
 
 ## Confirmed owner decisions (2026-10-15)
@@ -14,11 +14,11 @@
 - Deployment: local development and hosted deployment are intended, with hosted security gates.
 - Learning style: step-by-step explanations suitable for a learner.
 - AI workflow: multiple AI tools; keep these documents as the shared source of truth.
-- GitHub target: public `https://github.com/rutika-6177/aegis-forensics`; existence and current contents are not yet verified.
+- GitHub repository: public `https://github.com/rutika-6177/aegis-forensics`; verified on 2026-10-15. Documentation commit `ca30437` was pushed to `main`.
 - Cloud sync: metadata only; image bytes remain local.
 - Graph visualization: Cytoscape.js.
 - Initial local mode: no login; do not expose a hosted API until authentication/access controls and deployment security are resolved.
-- Frontend framework: **OPEN** — owner selected “other” and wants to discuss options before choosing.
+- Frontend: React + TypeScript selected on 2026-10-15; setup and tooling will be introduced step by step.
 
 
 ## 1. General operating rules
@@ -43,7 +43,7 @@
 - SQLite for local metadata.
 - CMake build system.
 - vcpkg or another explicitly approved reproducible dependency method.
-- Browser frontend; framework remains **[OPEN DECISION — owner selected “other”; discuss options before scaffolding]**.
+- React + TypeScript browser frontend; confirm the build tool before scaffolding. Keep forensic authority in the C++ backend.
 - Supabase is optional and must not be required for local mode.
 
 ### Dependency policy
@@ -122,6 +122,13 @@
 - Do not render user-supplied filenames as trusted HTML.
 - Keep animation decorative and separate from evidence-processing correctness.
 - Do not add sound effects that autoplay; any optional sound must be user-controllable and off by default.
+
+### React + TypeScript rules
+- Keep components focused and reusable; avoid putting the entire application in one component.
+- Type API payloads and responses explicitly; do not use `any` as a shortcut for unknown API contracts.
+- Keep API communication in a small service layer rather than duplicating `fetch` calls across components.
+- Keep cryptographic hashing, authoritative duplicate classification, evidence storage, and BFS/DFS implementation in the C++ backend.
+- Do not add frontend state-management or UI libraries without a concrete need and owner approval.
 
 ## 8. Database and cloud rules
 
