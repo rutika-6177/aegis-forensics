@@ -1,8 +1,8 @@
 # AegisForensics — Product Requirements Document
 
-**Status:** Draft v0.2
-**Project type:** Academic software engineering / digital-forensics demonstration
-**Last updated:** 2026-10-15
+**Status:** Draft v0.3  
+**Project type:** Academic software engineering / digital-forensics demonstration  
+**Last updated:** 2026-10-15  
 **Decision policy:** Items marked **[OPEN DECISION]** require confirmation before implementation.
 
 ## Confirmed owner decisions (2026-10-15)
@@ -15,11 +15,11 @@
 - Deployment: local development and hosted deployment are intended, with hosted security gates.
 - Learning style: step-by-step explanations suitable for a learner.
 - AI workflow: multiple AI tools; keep these documents as the shared source of truth.
-- GitHub target: public `https://github.com/rutika-6177/aegis-forensics`; existence and current contents are not yet verified.
+- GitHub repository: public `https://github.com/rutika-6177/aegis-forensics`; verified on 2026-10-15. Documentation commit `ca30437` was pushed to `main`.
 - Cloud sync: metadata only; image bytes remain local.
 - Graph visualization: Cytoscape.js.
 - Initial local mode: no login; do not expose a hosted API until authentication/access controls and deployment security are resolved.
-- Frontend framework: **OPEN** — owner selected “other” and wants to discuss options before choosing.
+- Frontend: React + TypeScript selected on 2026-10-15; setup and tooling will be introduced step by step.
 
 
 ## 1. Product summary
@@ -176,19 +176,19 @@ Any duplicate-rate statement used in a presentation must be sourced and contextu
 
 | ID | Decision | Current status |
 |---|---|---|
-| O-01 | Frontend framework | **OPEN** — owner selected “other” and wants to discuss options |
+| O-01 | Frontend framework | **RESOLVED** — React + TypeScript selected on 2026-10-15; build tool to be confirmed during setup |
 | O-02 | Authentication for local academic mode | Resolved: no login locally; hosted access requires security review |
 | O-03 | Cloud policy | Resolved: metadata-only sync; image bytes stay local |
 | O-04 | Deployment target/provider and public demo data | **OPEN** |
-| O-05 | Graph library: Cytoscape.js (selected) | **OPEN** |
+| O-05 | Graph library | **RESOLVED** — Cytoscape.js selected |
 | O-06 | Canonical representative rule for exact-duplicate groups | **OPEN** |
 | O-07 | Maximum upload size and supported image formats | **OPEN** |
-| O-08 | Repository state | Target supplied: public `rutika-6177/aegis-forensics`; existence and contents unverified |
+| O-08 | Repository state | **RESOLVED** — public `rutika-6177/aegis-forensics` verified; documentation commit `ca30437` pushed to `main` on 2026-10-15 |
 | O-09 | Whether case/workspace separation is required in v1 | **OPEN** |
 
 ## 11. Repository and dependency starting points
 
-The application repository will be a new repository created by the user; it is not one of the upstream dependency repositories. Proposed upstream projects (subject to license/version review and pinning):
+The application repository is the existing public repository `https://github.com/rutika-6177/aegis-forensics`; the initial documentation commit `ca30437` is pushed to `main`. It is separate from all upstream dependency repositories. Proposed upstream projects (subject to license/version review and pinning):
 
 - `https://github.com/yhirose/cpp-httplib` — HTTP server/client.
 - `https://github.com/nothings/stb` — `stb_image` image decoding header.
