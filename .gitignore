@@ -1,0 +1,25 @@
+﻿.env
+.env.*
+!.env.example
+
+# C++ build output
+build/
+cmake-build-*/
+
+# Frontend dependencies and build output
+node_modules/
+dist/
+
+# Local databases and evidence files
+*.db
+*.sqlite
+*.sqlite3
+evidence/
+data/
+uploads/
+
+# IDE and operating system files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
