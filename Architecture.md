@@ -1,7 +1,7 @@
 # AegisForensics — Architecture
 
-**Status:** Draft v0.2
-**Target:** Browser frontend + native C++17 API; local-first, optional cloud synchronization
+**Status:** Draft v0.3  
+**Target:** Browser frontend + native C++17 API; local-first, optional cloud synchronization  
 **Decision policy:** Items marked **[OPEN DECISION]** must be resolved before their implementation phase.
 
 ## Confirmed owner decisions (2026-10-15)
@@ -14,11 +14,11 @@
 - Deployment: local development and hosted deployment are intended, with hosted security gates.
 - Learning style: step-by-step explanations suitable for a learner.
 - AI workflow: multiple AI tools; keep these documents as the shared source of truth.
-- GitHub target: public `https://github.com/rutika-6177/aegis-forensics`; existence and current contents are not yet verified.
+- GitHub repository: public `https://github.com/rutika-6177/aegis-forensics`; verified on 2026-10-15. Documentation commit `ca30437` was pushed to `main`.
 - Cloud sync: metadata only; image bytes remain local.
 - Graph visualization: Cytoscape.js.
 - Initial local mode: no login; do not expose a hosted API until authentication/access controls and deployment security are resolved.
-- Frontend framework: **OPEN** — owner selected “other” and wants to discuss options before choosing.
+- Frontend: React + TypeScript selected on 2026-10-15; setup and tooling will be introduced step by step.
 
 
 ## 1. Architecture principles
@@ -63,7 +63,7 @@ C++17 API service (cpp-httplib)
 
 | Layer | Proposed choice | Notes |
 |---|---|---|
-| Frontend | Browser UI; framework **[OPEN DECISION]** | Discuss framework options with the owner and obtain approval before scaffolding. |
+| Frontend | React + TypeScript | Selected by the owner on 2026-10-15. Confirm the development/build tool during setup before scaffolding. |
 | Styling | CSS variables, responsive CSS, SVG/CSS effects | Avoid relying on heavy animation for core usability. |
 | API | C++17 + `cpp-httplib` | API route handlers should remain thin. |
 | JSON | `nlohmann/json` | Parse with explicit validation and error handling. |
@@ -81,7 +81,18 @@ C++17 API service (cpp-httplib)
 
 Preferred initial Windows path: Visual Studio 2022 or newer with the Desktop development with C++ workload, CMake, Git, and VS Code. Verify the exact compiler and dependency versions before locking them. `cpp-httplib` upstream currently notes support/testing expectations around modern Visual Studio, so do not assume every MinGW/MSYS2 configuration is supported.
 
-## 4. Data model (initial proposal)
+## 4. Frontend architecture decision
+
+**Decision (2026-10-15): React + TypeScript.** The owner approved React + TypeScript after comparing it with vanilla TypeScript. This is a confirmed framework decision; the specific build tool has not yet been selected.
+
+- Use React components for reusable interface regions (navigation, evidence rows/cards, filters, status indicators, comparison panels, and graph workspace).
+- Use TypeScript types for API request/response models and UI state. Do not invent API fields; keep the API contract documented and aligned with the C++ service.
+- Keep forensic hashing, authoritative duplicate decisions, file persistence, and graph traversal logic in the C++ backend. The browser displays server results and may handle presentation-only behavior.
+- Integrate Cytoscape.js behind a dedicated graph view/component.
+- Begin with a small responsive app shell and a health-check view; do not scaffold all planned screens at once.
+- Next setup gate: verify Node.js/npm availability, then confirm the frontend build tool before generating the React + TypeScript scaffold.
+
+## 5. Data model (initial proposal)
 
 ### `cases`
 - `id` — stable UUID/text ID.
@@ -117,7 +128,7 @@ Preferred initial Windows path: Visual Studio 2022 or newer with the Desktop dev
 
 **[OPEN DECISION]** Exact schema migrations and whether case IDs are UUIDs or another stable format should be finalized before implementation.
 
-## 5. Evidence storage and exact duplicate semantics
+## 6. Evidence storage and exact duplicate semantics
 
 - Store original file bytes under a generated, non-user-controlled object key.
 - Compute SHA-256 from the received original bytes before any decode/normalization.
@@ -127,7 +138,7 @@ Preferred initial Windows path: Visual Studio 2022 or newer with the Desktop dev
 - Never store evidence using a path constructed from an uploaded filename.
 - On failure, clean up only app-owned temporary files and mark the ingestion as failed.
 
-## 6. Perceptual hash flow
+## 7. Perceptual hash flow
 
 1. Validate byte size and file signature.
 2. Decode to a supported pixel format with explicit dimension/pixel-count limits.
@@ -140,7 +151,7 @@ Preferred initial Windows path: Visual Studio 2022 or newer with the Desktop dev
 
 **Known limitation:** simple dHash is sensitive to some crops, rotations, overlays, and major visual changes. Threshold-to-similarity percentages are approximations, not calibrated probabilities.
 
-## 7. API outline
+## 8. API outline
 
 API prefix: `/api/v1`.
 
@@ -158,7 +169,7 @@ API prefix: `/api/v1`.
 
 **[OPEN DECISION]** Final route contracts, pagination format, authentication, CORS policy, and upload transport are to be defined before frontend integration. Never expose raw local filesystem paths through the API.
 
-## 8. Proposed repository folder structure
+## 9. Proposed repository folder structure
 
 ```text
 aegis-forensics/
@@ -181,13 +192,13 @@ aegis-forensics/
 │   ├── api/
 │   └── testing/
 ├── frontend/
-│   ├── package.json              # if framework/toolchain requires it
+│   ├── package.json              # frontend scripts and dependencies
 │   ├── src/
 │   │   ├── components/
 │   │   ├── pages/
 │   │   ├── services/
 │   │   ├── styles/
-│   │   └── main.*
+│   │   └── main.tsx
 │   └── public/
 ├── backend/
 │   ├── include/aegis/
@@ -223,12 +234,12 @@ aegis-forensics/
     └── workflows/
 ```
 
-This structure is a proposal, not a requirement to create every folder immediately. The frontend file extensions and build files depend on the framework decision.
+This structure is a proposal, not a requirement to create every folder immediately. React + TypeScript is selected; the exact frontend build tool and scripts will be confirmed during setup.
 
-## 9. Git repositories to use
+## 10. Git repositories to use
 
 ### The one application repository (new)
-Use the owner-supplied target `https://github.com/rutika-6177/aegis-forensics` (intended public). The repository must be checked for existence and current contents before any push. It will contain application code, documentation, tests, schema migrations, and configuration templates.
+Use the verified public repository `https://github.com/rutika-6177/aegis-forensics`. The repository exists, and documentation commit `ca30437` was pushed to `main` on 2026-10-15. Continue checking `git status` and the remote before future pushes. The repository contains application code, documentation, tests, schema migrations, and configuration templates.
 
 ### Upstream dependency repositories
 - `https://github.com/yhirose/cpp-httplib` — C++ HTTP API.
@@ -242,7 +253,7 @@ Use the owner-supplied target `https://github.com/rutika-6177/aegis-forensics` (
 
 Do not make a separate Git repository for every dependency, and do not add dependencies as Git submodules by default. Use pinned versions/package-manager manifests; record vendored code and licenses in `THIRD_PARTY_NOTICES.md`.
 
-## 10. Deployment model
+## 11. Deployment model
 
 ### Local development
 - Browser UI runs on a development server.
@@ -257,7 +268,7 @@ Do not make a separate Git repository for every dependency, and do not add depen
 - Use TLS, authentication if needed, upload limits, rate limiting, and restricted cloud storage policies.
 - **[OPEN DECISION]** Hosting provider and whether C++ service is deployed as a container or native process.
 
-## 11. Resilience and security boundaries
+## 12. Resilience and security boundaries
 
 - All API inputs are untrusted.
 - Limit request bodies, file size, decoded dimensions, concurrency, and processing time.
