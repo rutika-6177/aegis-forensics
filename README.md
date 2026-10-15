@@ -1,4 +1,4 @@
-﻿# AegisForensics
+# AegisForensics
 
 **Academic Digital Image Forensics and Duplicate Detection**
 
@@ -15,26 +15,28 @@ A planned web-based academic project for analyzing image collections, detecting 
 
 ## Planned Technology
 
+- **Frontend:** React + TypeScript
 - **Backend:** C++17
-- **Frontend:** To be finalized
 - **Graph visualization:** Cytoscape.js
 - **Storage:** Local-first, with optional Supabase metadata synchronization.
+
+The frontend framework is selected. The build tool and setup commands will be confirmed during the environment setup phase.
 
 ## Documentation
 
 | Document | Purpose |
 |---|---|
 | [PRD.md](PRD.md) | Product requirements and scope |
-| [Architecture.md](Architecture.md) | System architecture |
+| [Architecture.md](Architecture.md) | System architecture and confirmed frontend decision |
 | [Rules.md](Rules.md) | Project rules and constraints |
 | [Phases.md](Phases.md) | Development roadmap |
 | [Design.md](Design.md) | UI and visual design direction |
 
 ## Project Status
 
-**Current phase:** Planning and documentation.
+**Current phase:** Planning and environment setup.
 
-Implementation has not yet begun. Features described here are project goals, not claims of existing functionality.
+The project specifications are committed to GitHub. Application implementation has not yet begun; listed features are goals, not claims of existing functionality.
 
 ## Academic Purpose
 
