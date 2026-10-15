@@ -1,7 +1,7 @@
 # AegisForensics — Implementation Phases
 
-**Status:** Draft v0.2
-**Approach:** One phase at a time; do not begin the next phase until the current exit criteria are reviewed.
+**Status:** Draft v0.3  
+**Approach:** One phase at a time; do not begin the next phase until the current exit criteria are reviewed.  
 **Schedule:** No dates committed until toolchain and weekly availability are confirmed.
 
 ## Confirmed owner decisions (2026-10-15)
@@ -14,25 +14,25 @@
 - Deployment: local development and hosted deployment are intended, with hosted security gates.
 - Learning style: step-by-step explanations suitable for a learner.
 - AI workflow: multiple AI tools; keep these documents as the shared source of truth.
-- GitHub target: public `https://github.com/rutika-6177/aegis-forensics`; existence and current contents are not yet verified.
+- GitHub repository: public `https://github.com/rutika-6177/aegis-forensics`; verified on 2026-10-15. Documentation commit `ca30437` was pushed to `main`.
 - Cloud sync: metadata only; image bytes remain local.
 - Graph visualization: Cytoscape.js.
 - Initial local mode: no login; do not expose a hosted API until authentication/access controls and deployment security are resolved.
-- Frontend framework: **OPEN** — owner selected “other” and wants to discuss options before choosing.
+- Frontend: React + TypeScript selected on 2026-10-15; setup and tooling will be introduced step by step.
 
 
 ## Phase 0 — Decisions, environment, and repository
 
 ### Tasks
-- Resolve frontend framework and deployment target; inspect the owner-supplied GitHub repository before pushing. Cloud policy, graph library, repository name, and intended visibility are already specified.
+- Verify the existing local Git repository and `origin` remote. The React + TypeScript framework choice and public GitHub repository are already confirmed; deployment target remains open.
 - Confirm Windows compiler/toolchain and install Git, VS Code, CMake, Visual Studio C++ build tools, and vcpkg as needed.
-- Create the new GitHub repository and clone it locally.
+- Keep the existing local project folder and repository history; do not create a second repository or reinitialize Git.
 - Add initial docs, README, `.gitignore`, `.editorconfig`, license decision, and third-party notices placeholder.
-- Establish a minimal CMake build and a minimal frontend dev command.
+- Check Node.js/npm and the C++ toolchain; confirm the frontend build tool before scaffolding. Establish a minimal CMake build and React + TypeScript development command.
 
 ### Exit criteria
 - Fresh local clone builds/runs the “hello service” and frontend shell.
-- Git remote points to the intended newly created repository.
+- Git remote points to `https://github.com/rutika-6177/aegis-forensics.git`; documentation commit is pushed and the working tree is understood.
 - No credentials or evidence are committed.
 - All decisions required for Phase 1 are recorded.
 
