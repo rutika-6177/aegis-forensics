@@ -1,7 +1,7 @@
 # AegisForensics — Design System
 
-**Status:** Draft v0.2
-**Visual direction:** Minimalist forensic workspace with a restrained Cyber HUD aesthetic
+**Status:** Draft v0.3  
+**Visual direction:** Minimalist forensic workspace with a restrained Cyber HUD aesthetic  
 **Decision policy:** Font choices are initial proposals; confirm licensing/availability and final pairing before production UI.
 
 ## Confirmed owner decisions (2026-10-15)
@@ -14,11 +14,11 @@
 - Deployment: local development and hosted deployment are intended, with hosted security gates.
 - Learning style: step-by-step explanations suitable for a learner.
 - AI workflow: multiple AI tools; keep these documents as the shared source of truth.
-- GitHub target: public `https://github.com/rutika-6177/aegis-forensics`; existence and current contents are not yet verified.
+- GitHub repository: public `https://github.com/rutika-6177/aegis-forensics`; verified on 2026-10-15. Documentation commit `ca30437` was pushed to `main`.
 - Cloud sync: metadata only; image bytes remain local.
 - Graph visualization: Cytoscape.js.
 - Initial local mode: no login; do not expose a hosted API until authentication/access controls and deployment security are resolved.
-- Frontend framework: **OPEN** — owner selected “other” and wants to discuss options before choosing.
+- Frontend: React + TypeScript selected on 2026-10-15; setup and tooling will be introduced step by step.
 
 
 ## 1. Design goals
